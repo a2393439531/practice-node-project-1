@@ -1,0 +1,19 @@
+{
+  "name": "practice-node-project",
+  "version": "1.0.0",
+  "description": "practice node project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javasaint/practice-node-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/javasaint/practice-node-project/issues"
+  },
+  "homepage": "https://github.com/javasaint/practice-node-project#readme"
+}
