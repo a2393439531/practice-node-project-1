@@ -1,10 +1,10 @@
 'use strict';
 
 /**
- * pratice Node.js project
+ * practice node.js project
  *
- * @author Zongmin Lei <leizongmin@gmail.com>
- */
+ * @author javasaint
+**/
 
 module.exports = function (done) {
 
