@@ -14,7 +14,9 @@ module.exports = function (done) {
   const ObjectId = Schema.ObjectId;
 
   const Topic = new Schema({
+
     author: {type: ObjectId, index: true, ref: 'User'},
+
     title: {type: String, trim: true},
     content: {type: String},
     tags: [{type: String, index: true}],

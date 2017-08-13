@@ -53,36 +53,36 @@ export default class TopicDetail extends React.Component {
   }
 
   render() {
-    const topic = this.state.topic;
-    if (!topic) {
+    const tpk = this.state.tpk;
+    if (!tpk) {
       return (
         <div>正在加载...</div>
       );
     }
     return (
       <div>
-        <h2>{topic.title}</h2>
-        <p>{topic.author.nickname} 发表于 {topic.createdAt}</p>
-        <p>标签：{topic.tags.join(', ')}</p>
+        <h2>{tpk.title}</h2>
+        <p> {tpk.author.nickname} 发表于 {tpk.createdAt}</p>
+        <p>标签：{tpk.tags.join(', ')}</p>
         <p>
-          {!topic.permission.edit ? null :
-            <Link to={`/topic/${topic._id}/edit`} className="btn btn-xs btn-primary">
+          {!tpk.permission.edit ? null :
+            <Link to={`/topic/${tp._id}/edit`} className="btn btn-xs btn-primary">
               <i className="glyphicon glyphicon-edit"></i> 编辑
             </Link>
           }
           &nbsp;&nbsp;
-          {!topic.permission.delete ? null :
+          {!tp.permission.delete ? null :
           <button className="btn btn-xs btn-danger" onClick={this.handleDeleteTopic.bind(this)}>
             <i className="glyphicon glyphicon-trash"></i> 删除
           </button>
           }
         </p>
         <hr />
-        <section dangerouslySetInnerHTML={{__html: topic.html}}></section>
+        <section dangerouslySetInnerHTML={{__html: tp.html}}></section>
         <CommentEditor
           title="发表评论"
           onSave={(comment, done) => {
-            addComment(this.state.topic._id, comment.content)
+            addComment(this.state.tp._id, comment.content)
               .then(comment => {
                 done();
                 this.refresh();
@@ -94,7 +94,7 @@ export default class TopicDetail extends React.Component {
           }}
         />
         <ul className="list-group">
-          {topic.comments.map((item, i) => {
+          {tp.comments.map((item, i) => {
             return (
               <li className="list-group-item" key={i}>
               <span className="pull-right">
