@@ -22,10 +22,29 @@ module.exports = function (done) {
     const topic = new $.model.Topic(params);
     topic.createdAt = new Date();
 
+    const p = {author: params.author}
+    const latestTopic = await $.method('topic.getLatest').call(p);
+    if(p != null && topic.createdAt - p.createdAt < 30000  ){
+      return
+    }
     return topic.save();
 
   });
 
+  $.method('topic.getLatest').register(async function(params){
+    const query = {};
+    if (params.author) query.author = params.author;
+    const ret = $.model.Topic.find(query, {
+      author: 1,
+      title: 1,
+      tags: 1,
+      createdAt: 1,
+      updatedAt: 1,
+      lastCommentedAt: 1,
+      pageView: 1,
+    }).sort({'createdAt':-1}).limit(1);
+    return ret;
+  });
 
   $.method('topic.get').check({
     _id: {required: true, validate: (v) => validator.isMongoId(String(v))},
